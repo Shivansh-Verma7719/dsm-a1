@@ -4,11 +4,8 @@ from textblob import TextBlob
 import subprocess
 import sys
 
-try:
-    nlp = spacy.load("en_core_web_sm")
-except Exception:
-    subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
-    nlp = spacy.load("en_core_web_sm")
+# Load spacy model pre-installed via requirements.txt wheel
+nlp = spacy.load("en_core_web_sm")
 
 def calc_response_delta(events_df, timeline_df):
     results = []
