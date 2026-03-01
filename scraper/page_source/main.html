@@ -1,0 +1,1107 @@
+<!-- https://www.gdacs.org/Alerts/default.aspx -->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	GDACS - Global Disaster Awareness and Coordination System
+</title>
+    <link rel="stylesheet" href="../scripts/openlayers/3.20.1/ol.css" type="text/css" />
+    <link rel="stylesheet" href="../scripts/openlayers/layerswitcher/ol3-layerswitcher.css" />
+    <link href="../Styles/gdacs_mapstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Content/all.css" />
+    <script type="text/javascript" src="../scripts/openlayers/3.20.1/ol.js"></script>
+    <script type="text/javascript" src="../scripts/openlayers/layerswitcher/ol3-layerswitcher.js"></script>
+    <script type="text/javascript" src="../Scripts/Search/searchtools.js"></script>
+    <link href="../Styles/gdacs_2.0_bootstrap4to5.css" rel="stylesheet" />
+
+<link href="/Content/bootstrap.min.css" rel="stylesheet" /><link href="/Styles/gdacs_2.0.css" rel="stylesheet" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="stylesheet" media="(min-width: 768px) and (max-width: 991px)" href="../Styles/gdacs_device_2.0.css" /><link rel="stylesheet" media="(max-width: 768px)" href="../Styles/gdacs_minidevice_2.0.css" /><link rel="stylesheet" href="/Content/themes/base/jquery-ui.css" />
+    <script src="https://webtools.europa.eu/load.js" defer="defer"></script>
+    <script type="application/json">
+    {
+        "utility":"analytics",
+        "siteID":"770a3ada-ebea-420b-923a-c6490acb21ab",
+        "sitePath":["www.gdacs.org"],
+        "instance":"ec",
+        "mode":"manual"
+    }
+    </script>
+    <script type="application/json">
+	{
+		"utility" : "cck",
+		"url": {
+			"en": "https://commission.europa.eu/cookies-policy_en",
+			"de": "https://commission.europa.eu/cookies-policy_de"
+		}
+	}
+    </script>
+
+    <script type="text/javascript" src="../Scripts/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui-1.13.2.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.bundle.min.js"></script>
+    <!--<script type="text/javascript" src="../Scripts/StackTable/stacktable.js-master/stacktable.js"></script>-->
+
+
+
+    <style type="text/css">
+        .navbar-header {
+            color: #9bc1ce;
+            background-color: #69A7C3;
+        }
+
+        .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: #c5d5d8
+        }
+
+            .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
+                background-color: transparent;
+                text-decoration: underline;
+                color: white;
+            }
+
+        .navbar-footer {
+            color: #9bc1ce;
+            background-color: transparent;
+            border: none;
+            border-bottom: none;
+            border-color: transparent;
+        }
+
+        .admin-style {
+            background-color: #990000
+        }
+
+        .admin-item-style {
+            color: #6d9baf;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0px 20px 0 15px
+        }
+
+        .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .activereport > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.activereport {
+            color: #125172;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0px 20px 0 15px;
+            text-decoration: underline;
+        }
+
+        #footer_home {
+            background-color: #125172;
+        }
+
+        td, th {
+            padding: 12px;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+    <link href="../Styles/gdacs_2.0_bootstrap4to5.css" rel="stylesheet" />
+
+    <!--<script type="text/javascript">
+        if ($wt.analytics.isTrackable()) {
+            $wt.trackPageView();
+        }
+    </script>-->
+
+    <!-- Piwik 
+   <script type="text/javascript">
+       
+       if ($wt.cookie.consent.is.choiceMade() && $wt.cookie.consent.is.allAccepted()) {
+           var _paq = _paq || [];
+               /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                  _paq.push(['trackPageView']);
+                  _paq.push(['enableLinkTracking']);
+                  (function() {
+                  var u="//stats.jrc.ec.europa.eu/";
+                  _paq.push(['setTrackerUrl', u+'piwik.php']);
+                  _paq.push(['setSiteId', '319']);
+                  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                  g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+                  })();
+      }
+   </script>
+ End Piwik Code -->
+</head>
+<body>
+    <div id="wrapper_anniversary">
+        
+            <div id="header" class="container-fluid">
+                <div id="top_menu">
+                    <style>
+                        @media screen (min-width: 992px) {
+                            #main_alert_content .navbar-expand-lg {
+                                height: 40px;
+                            }
+                        }
+                    </style>
+                    <div class="container">
+                        <!--<div class="float-end gdacs_top_menu_content"><a href="../admin" target="_blank">admin</a></div>-->
+                        <div class="float-end gdacs_top_menu_content"><a href="../gdacsregister" target="_blank">register/login</a></div>
+                        <div class="float-end gdacs_top_menu_content"><a href="../About/contactus.aspx">contact us</a></div>
+                        <div class="float-end gdacs_top_menu_content"><a href="../About/termofuse.aspx">term of use</a></div>
+
+                    </div>
+                </div>
+                <div id="heading" class="container">
+                    <div id="rowhead" class="row">
+                        <div id="gd_logo" class="col-lg-3 gdacs_logo">
+                            <img id="gdacs_logo_image" src="../images/gdacs_logo_ecs_medium3.png" />
+                        </div>
+                        <div id="gd_statement" class="d-none d-lg-block col-lg-6 gdacs_statement">GDACS is a cooperation framework between the United Nations, the European Commission and disaster managers worldwide to improve awareness, information exchange and coordination in the first phase after major sudden-onset disasters.</div>
+                        <div id="gd_uneu" class="d-none d-lg-block col-lg-3 gdacs_uneu">
+                            <img src="../images/un_eu.png" />
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div id="nopadding" class="container">
+                
+                <div id="topmenu">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-header navbar-fixed-top">
+                        
+                        <button class="navbar-toggler" style="font-size: 18px; color: white; font-weight: bold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon" style="color: white;"></span>
+                            MENU
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link active" href="../default.aspx">HOME</a>
+                                <a class="nav-item nav-link" href="./default.aspx">GDACS EVENTS</a>
+                                <a class="nav-item nav-link" href="http://vosocc.unocha.org">VIRTUAL OSOCC</a>
+                                <a class="nav-item nav-link" href="https://smcs.unosat.org/home" target="_blank">MAPS & SATELLITE IMAGERY</a>
+                                <a class="nav-item nav-link" href="../Knowledge/overview.aspx">KNOWLEDGE</a>
+                                <a class="nav-item nav-link" href="../About/overview.aspx">ABOUT</a>
+
+                            </div>
+                        </div>
+                            <a class="nav-item nav-link" href="https://new.gdacs.org" target="_blank">
+                                <img src="../images/2025_GDACS_logo_plain_resize48_CLICK2.png" alt="Gdacs New Website" />
+                            </a>
+
+                    </nav>
+                </div>
+                
+                <div class="row"></div>
+                <div class="col-lg-12">
+                    
+    
+    <div id="search_container" class="container">
+        <div id="panelSearch" class="row p_summary">
+            <div class="accordion" id="accordionPanelsStayOpenExample">  
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                  <button class="accordion-button p_summary" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    Search
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div class="accordion-body">
+	                <div class="row">
+		                <div class="col-lg-2">
+			                <div id="inputType" class="p_summary">
+				                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChEq"/>
+				                    <label class="form-check-label" for="inputChEq" >
+					                Earthquakes
+				                    </label>
+				                </div>
+				                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChTs"/>
+				                    <label class="form-check-label" for="inputChTs">
+					                only Tsunamis
+				                    </label>
+				                </div>
+				                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChFl"/>
+				                    <label class="form-check-label" for="inputChFl">
+					                Floods
+				                    </label>
+				                </div>
+				                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChTc"/>
+				                    <label class="form-check-label" for="inputChTc">
+					                Cyclones
+				                    </label>
+				                </div>
+				                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChVo"/>
+				                    <label class="form-check-label" for="inputChVo">
+					                Volcanoes
+				                    </label>
+				                </div>
+				                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChDr"/>
+				                    <label class="form-check-label" for="inputChDr">
+					                Droughts
+				                    </label>
+				                </div>
+                                <div class="">
+				                    <input class="form-check-input" type="checkbox" value="" id="inputChFf"/>
+				                    <label class="form-check-label" for="inputChFf">
+					                Forest Fires
+				                    </label>
+				                </div>
+			                </div>
+		                </div>
+		                <div class="col-lg-5">
+			                <div id="inputPeriod" class="p_summary">
+		                        <div class="row">
+		                            <div class="col-lg-2">
+                                        From
+		                            </div>
+		                            <div class="col-lg-10">
+				                        <input id="inputDateFrom" class="form-control p_summary"  type="text"/>
+                                    </div>
+                                </div>
+		                        <div class="row">
+		                            <div class="col-lg-2">
+                                        To
+		                            </div>
+		                            <div class="col-lg-10">
+				                        <input id="inputDateTo" class="form-control p_summary"  type="text"/>
+                                    </div>
+                                </div>
+			                </div>
+		                </div>
+		                <div class="col-lg-5">
+			                <div id="inputOptions" class="p_summary">
+		                        <div class="row">
+		                            <div class="col-lg-2">
+                                        Level
+		                            </div>
+		                            <div class="col-lg-10">
+                                        <select id="inputAlert" class="form-control p_summary">
+                                            <option value="Red">Red</option>
+                                            <option value="Orange" selected>Orange</option>
+                                            <option value="Green">Green</option>
+                                            <option value="Green;Orange;Red">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+		                        <div class="row">
+		                            <div class="col-lg-2">
+                                        Severity
+		                            </div>
+		                            <div class="col-lg-10">
+                                        <input id="inputSeverity" class="form-control p_summary" type="text"/>
+                                    </div>
+                                </div>
+		                        <div class="row">
+		                            <div class="col-lg-2">
+                                        Country
+		                            </div>
+		                            <div class="col-lg-10">
+                                        <input id="inputCountry" class="form-control p_summary" type="text"/>
+                                    </div>
+                                </div>
+			                </div>
+		                </div>
+	                </div>
+	                <div class="row">
+                        <div class=" col-lg-2">
+                            <button id="btnsearch" type="button" class="btn btn-primary button_generic">Search</button>
+                            <div class="p_summary_small" style="margin-top:4px">The SEARCH function returns at most 100 events </div>
+                        </div>
+                        <div class=" col-lg-10">
+                            <div id="contentLoader"></div>
+                        </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mapresult_container" class="container">
+        <div id="main_content" class="row">
+            <div class="col-12">
+                <div id="map" class="main_home_map">
+                </div>
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content"></div>
+                </div>
+                <div id="map_caption">
+                
+                </div>
+            </div>
+           <div class="row">
+            <div class="col-lg-12">
+                <div id="contentSearch" class="alert_box_title_search">
+                    RESULTS&nbsp;&nbsp;<div id="iconDownload" style="display:inline"><a href="javascript:onclick=downloadResult();"><i class="fas fa-download" ></i></a></div>
+                </div>
+                <div id="contentResult" class="">
+
+                </div>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--<script type="text/javascript" src="../Scripts/bootstrap-datepicker.min.js"></script>-->
+    <script type="text/javascript">
+        var baseUrl = "https://www.gdacs.org/gdacsapi/";
+        var arrayCountryList = ["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahrain", "Baker I.", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia & Herzegovina", "Botswana", "Bouvet I.", "Brazil", "British Indian Ocean Territory", "British Virgin Is.", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Is.", "Central African Republic", "Chad", "Chile", "China", "Christmas I.", "Cocos Is.", "Colombia", "Comoros", "Cook Is.", "Costa Rica", "Cote d'Ivoire", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic Republic of Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Falkland Is.", "Faroe Is.", "Fiji", "Finland", "France", "French Guiana", "French Polynesia", "French Southern & Antarctic Lands", "Gabon", "Gaza Strip", "Georgia", "Germany", "Ghana", "Gibraltar", "Glorioso Is.", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard I. & McDonald Is.", "Honduras", "Howland I.", "Hungary", "Iceland", "India", "Indonesia", "Iraq", "Ireland", "Islamic Republic of Iran", "Isle of Man", "Israel", "Italy", "Jamaica", "Jan Mayen", "Japan", "Jarvis I.", "Jersey", "Johnston Atoll", "Jordan", "Juan De Nova I.", "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan", "La Reunion", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Is.", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia", "Midway Is.", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk I.", "North Korea", "Northern Mariana Is.", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Is.", "Poland", "Portugal", "Puerto Rico", "Qatar", "Republic of Congo", "Romania", "Russia", "Rwanda", "Samoa", "San Marino", "Sao Tome & Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Is.", "Somalia", "South Africa", "South Georgia & the South Sandwich Is.", "South Korea", "South Sudan", "Spain", "Sri Lanka", "St. Helena", "St. Kitts & Nevis", "St. Lucia", "St. Pierre & Miquelon", "St. Vincent & the Grenadines", "Sudan", "Suriname", "Svalbard", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "The Bahamas", "The Gambia", "The Republic of North Macedonia", "Timor-Leste", "Togo", "Tokelau", "Tonga", "Trinidad & Tobago", "Tunisia", "Türkiye", "Turkmenistan", "Turks & Caicos Is.", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Virgin Is.", "Wake I.", "Wallis & Futuna", "West Bank", "Western Sahara", "Yemen", "Zambia", "Zimbabwe"];
+        var layerSearch = "https://www.gdacs.org/gdacsapi/api/events/geteventlist/ARCHIVE?eventlist=EQ;TC;FL;VO;WF";
+        var dataResult = "";
+        function changeLayerContent() {
+            changeLayer();
+            buildTable("#contentResult");
+        }
+
+        function downloadResult() {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(JSON.stringify(dataResult)));
+            element.setAttribute('download', "result.geojson");
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+        function buildTable(divResult) {
+
+
+            $(contentLoader).html("<img src=\"../images/loader.gif\" >");
+            $(divResult).html("<img src=\"../images/loader.gif\" >");
+            $('#iconDownload').hide();
+            var items = [];
+            items.push("<table class=\"generic_search\">");
+            items.push("<tr class=\"main_tit\">");
+            items.push("<td>Alert</td>");
+            items.push("<td>Description</td>");
+            items.push("<td style=\"width:18%\">Date</td>");
+            items.push("</tr>");
+
+            $.ajax({ type: "GET", url: layerSearch })
+                .fail(function (dataNotFound) {
+                    items.push("<tr>");
+                    items.push("<td colspan=\"3\">No events found</td>");
+                    items.push("</tr>");
+                    items.push("</table>");
+                    $(contentLoader).html("");
+                    $(divResult).html(items.join(""));
+                })
+                .done(function (data) {
+                    var line = "";
+                    var empty = true;
+                    dataResult = data;
+                    if (data && data.features && data.features.length > 0) {
+                        $.each(data.features, function (key, val) {
+                            empty = false;
+                            var description = "";
+                            var toDate = new Date(val.properties["todate"]);
+
+                            items.push("<tr class='clickable-row' data-href='" + val.properties.url["report"] + "'>");
+                            items.push("<td><a href=\"" + val.properties.url["report"].replace("http://www.gdacs.org/", baseUrl) + "\"><img src=\"../images/gdacs_icons/alerts/" + val.properties["alertlevel"] + "/" + val.properties["eventtype"] + ".png\"></img></a></td>");
+
+                            if (val.properties["eventtype"] == "EQ") {
+                                items.push("<td style='text-align:left;'><a href=\"" + val.properties.url["report"].replace("http://www.gdacs.org/", baseUrl) + "\">M" + val.properties.severitydata["severity"] + " " + val.properties["alertlevel"]+ " " +val.properties["description"] + "</a></td>");
+                            }
+                            else {
+                                items.push("<td style='text-align:left;'><a href=\"" + val.properties.url["report"].replace("http://www.gdacs.org/", baseUrl) + "\">" + val.properties["htmldescription"] + "</a></td>");
+                            }
+                            if (val.properties["eventtype"] != "EQ" && val.properties["eventtype"] != "VO") {
+                                items.push("<td style='text-align:left;'>" + toDate.toLocaleDateString("en-US", { day: '2-digit', month: 'short', year: 'numeric' }) + "</td>");
+                            }
+                            else {
+                                items.push("<td style='text-align:left;'>" + toDate.toLocaleDateString("en-US", { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) + "</td>");
+                            }
+                            items.push("</tr>");
+
+                        });
+                    }
+                    else {
+                        items.push("<tr>");
+                        items.push("<td colspan=\"3\">No events found</td>");
+                        items.push("</tr>");
+                    }
+
+                    items.push("</table>");
+
+                    $(contentLoader).html("");
+                    if (!empty) {
+                        $('#iconDownload').show();
+                    }
+                    $(divResult).html(items.join(""));
+
+
+
+                });
+
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+        }
+        buildTable("#contentResult");
+
+
+
+        $(function () {
+            $("#btnsearch").click(function () {
+                buildUrlSearch();
+                changeLayerContent();
+
+            });
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+            $("#inputCountry").autocomplete({
+                source: arrayCountryList
+            });
+            $("#inputChTs").change(function () {
+                if ($('#inputChTs').prop('checked'))
+                    $('#inputChEq').prop('checked', this.checked);
+            });
+            
+
+
+            $("#inputDateFrom").datepicker();
+            $("#inputDateFrom").datepicker("setDate", "-365d");
+            $("#inputDateFrom").datepicker("option", "dateFormat", "yy-mm-dd");
+
+            $("#inputDateTo").datepicker();
+            $("#inputDateTo").datepicker("setDate", "-0d");
+            $("#inputDateTo").datepicker("option", "dateFormat", "yy-mm-dd");
+
+
+        });
+
+        //Color for Style
+        var polygonColor = {
+            'Poly_Red': [255, 0, 0, 0.5],
+            'Poly_Orange': [255, 162, 0, 0.5],
+            'Poly_Green': [68, 255, 0, 0.5],
+            'Poly_White': [68, 255, 0, 0.2],
+            'Poly_Affected': [47, 183, 234, 0.5],
+            'Poly_Cones': [253, 253, 253, 0.1],
+            'Poly_Epi_100': [158, 250, 253, 0.1],
+            'Poly_Epi_150': [103, 182, 210, 0.1],
+            'Poly_Epi_200': [51, 103, 181, 0.1],
+            'Poly_Sum_100': [239, 217, 106, 0.1],
+            'Poly_Sum_200': [239, 177, 106, 0.1],
+            'Poly_Sum_300': [239, 111, 106, 0.1],
+            'Poly_Sum_400': [239, 106, 186, 0.1],
+            'Poly_Sum_500': [190, 106, 239, 0.1],
+            'Line_Red': [209, 0, 0, 1],
+            'Line_Orange': [209, 132, 0, 1],
+            'Line_Green': [57, 213, 0, 1],
+            'Line_White': [57, 213, 0, 0.5],
+            'Line_Cones': [253, 253, 253, 0.3],
+            'Line_Affected': [47, 183, 234, 1],
+            'Line_Track': [221, 245, 12, 1],
+            'Point_Past': [155, 104, 1, 0.5],
+            'Point_For': [199, 176, 27, 0.5],
+            'Text_Fill': [255, 255, 255, 1],
+            'Text_Out': [118, 118, 118, 1]
+        };
+        var zoomLevel = 0;
+        var styleCache = {};
+        var layerList = [];
+
+        /**
+        * Elements that make up the popup.
+        */
+        var container = document.getElementById('popup');
+        var content = document.getElementById('popup-content');
+        var closer = document.getElementById('popup-closer');
+
+        /**
+        * Create an overlay to anchor the popup to the map.
+        */
+        var overlay = new ol.Overlay(/** @type {olx.OverlayOptions} */({
+            element: container,
+            autoPan: true,
+            autoPanAnimation: {
+                duration: 250
+            }
+        })
+        );
+
+
+
+        /**
+        * Variable to set animation MODIS
+        */
+        var animationId = null;
+        var frameRate = 0.5; // frames per second
+        /**
+        * Variable to set the mask url for the historical static images
+        */
+
+        /**
+        * Add a click handler to hide the popup.
+        * @return {boolean} Don't follow the href.
+        */
+        closer.onclick = function () {
+            overlay.setPosition(undefined);
+            closer.blur();
+            return false;
+        };
+
+        var defaultStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+                color: [250, 250, 250, 0.5]
+            }),
+            stroke: new ol.style.Stroke({
+                color: [220, 220, 220, 1],
+                width: 1
+            })
+        });
+
+        /**
+        * Function to create a text file on a polygon 
+        */
+        var createTextStyle = function (feature) {
+            var objectType = feature.get('Class');
+            var textValue = '';
+            var offsetXValue, offsetYValue;
+            offsetXValue = offsetYValue = 10;
+            if (feature.get('polygonlabel') == 'Centroid' &&
+                (feature.get('eventtype') == 'TC' || feature.get('eventtype') == 'VO')) {
+                textValue = feature.get('eventname');
+                offsetXValue = offsetYValue = 5;
+                //Remove name for archive page
+                textValue = '';
+
+
+            }
+            else if (objectType.startsWith('Poly_Polygon')) {
+                textValue = feature.get('polygonlabel');
+                if (textValue.startsWith('previous')) {
+                    textValue = '';
+                }
+                if (zoomLevel < 6)
+                    textValue = '';
+
+            }
+            /*
+        else if (objectType.startsWith('Poly_Cones')) {
+            textValue = feature.get('eventname');
+            if (zoomLevel < 4)
+                textValue = '';
+
+            offsetXValue = offsetYValue = 40;
+        }
+        */
+            return new ol.style.Text({
+                textAlign: 'Center',
+                textBaseline: 'Middle',
+                font: 'Bold 12px Verdana',
+                text: textValue,
+                scale: 1,
+                fill: new ol.style.Fill({ color: polygonColor['Text_Fill'] }),
+                stroke: new ol.style.Stroke({ color: polygonColor['Text_Out'], width: 2 }),
+                offsetX: offsetXValue,
+                offsetY: offsetYValue
+            });
+        };
+
+        /**
+        * Function to create a Style at the polygon
+        */
+        function styleFunction(feature, resolution) {
+            // get the incomeLevel from the feature properties
+            var classProperty = feature.get('Class');
+            var alertLevel = feature.get('alertlevel');
+            var eventtype = feature.get('eventtype');
+            var label = feature.get('polygonlabel');
+            var iconLink = feature.get('iconeventlink');
+            if (!iconLink)
+                iconLink = feature.get('iconoverall');
+            if (!iconLink|| iconLink == null || iconLink == '')
+                iconLink = feature.get('icon');
+
+            var textValue = '';
+            if (feature.get('eventtype') == 'TC' || feature.get('eventtype') == 'VO')
+                textValue = feature.get('eventname');
+            //Remove name for archive 
+            textValue = '';
+            var keyStyle = '';
+            // if there is no level or its one we don't recognize,
+            // return the default style (in an array!)
+            if (!classProperty) {
+                return [defaultStyle];
+            }
+            if (classProperty == 'Poly_Red' || classProperty == 'Poly_Orange' || classProperty == 'Poly_Green' || classProperty == 'Poly_White' || classProperty == 'Poly_Affected') {
+                keyStyle = classProperty;
+                if (!styleCache[keyStyle]) {
+                    styleCache[keyStyle] = new ol.style.Style({
+                        fill: new ol.style.Fill({
+                            color: polygonColor[classProperty]
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: polygonColor[classProperty.replace('Poly_', 'Line_')],
+                            width: 1
+                        })
+                    });
+                }
+            }
+            else if (classProperty == 'Point_Point') {
+                keyStyle = classProperty;
+                if (!styleCache[keyStyle]) {
+                    styleCache[keyStyle] = new ol.style.Style({
+                        image: new ol.style.Icon({
+                            anchor: [0, 0],
+                            anchorXUnits: 'fraction',
+                            anchorYUnits: 'pixels',
+                            src: "https://www.gdacs.org/img/dot.png"
+                        })
+                    });
+                }
+            }
+            else if (classProperty.startsWith('Poly_Epi') || classProperty.startsWith('Poly_Sum')) {
+                keyStyle = classProperty;
+                if (!styleCache[keyStyle]) {
+                    styleCache[keyStyle] = new ol.style.Style({
+                        fill: new ol.style.Fill({
+                            color: polygonColor[classProperty]
+                        })
+                    });
+                }
+            }
+            else if (classProperty == 'Poly_Intensity') {
+                keyStyle = classProperty + '_' + alertLevel;
+                if (!styleCache[keyStyle]) {
+                    styleCache[keyStyle] = new ol.style.Style({
+                        fill: new ol.style.Fill({
+                            color: polygonColor['Poly_' + alertLevel]
+                        }),
+                        stroke: new ol.style.Stroke({
+                            color: polygonColor['Line_' + alertLevel],
+                            width: 1
+                        })
+                    });
+                }
+            }
+            else if (classProperty == 'Poly_Circle') {
+                keyStyle = classProperty + '_' + alertLevel;
+                if (!styleCache[keyStyle]) {
+                    styleCache[keyStyle] = new ol.style.Style({
+                        stroke: new ol.style.Stroke({
+                            color: polygonColor['Line_' + alertLevel],
+                            width: 1
+                        })
+                    });
+                }
+            }
+            else if (classProperty.startsWith('Poly_Polygon')) {
+                if (label.startsWith('previous')) {
+                    keyStyle = 'Point_Past';
+                }
+                else {
+                    keyStyle = 'Point_For';
+                }
+                //if (!styleCache[keyStyle]) {
+                styleCache[keyStyle] = new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: polygonColor[keyStyle]
+                    })/*,
+                    text: createTextStyle(feature)*/
+                });
+                //}	
+
+            }
+            else if (classProperty.startsWith('Poly_Cones')) {
+                styleCache[keyStyle] = new ol.style.Style({
+                    fill: new ol.style.Fill({
+                        color: polygonColor[classProperty]
+                    }),
+                    stroke: new ol.style.Stroke({
+                        color: polygonColor[classProperty.replace('Poly_', 'Line_')]
+                    })/*,
+                    text: createTextStyle(feature)*/
+                });
+
+            }
+            else if (classProperty.startsWith('Line')) {
+                keyStyle = 'Line';
+                if (!styleCache[keyStyle]) {
+                    styleCache[keyStyle] = new ol.style.Style({
+                        stroke: new ol.style.Stroke({
+                            color: polygonColor['Line_Track'],
+                            width: 1
+                        })
+                    });
+                }
+
+            }
+            else if (classProperty == 'Point_Centroid') {
+                return new ol.style.Style({
+                    image: new ol.style.Icon({
+                        anchor: [0.5, 46],
+                        anchorXUnits: 'fraction',
+                        anchorYUnits: 'pixels',
+                        src: iconLink
+                    }),
+                    text: new ol.style.Text({
+                        textAlign: 'Center',
+                        textBaseline: 'Middle',
+                        font: 'Bold 12px Verdana',
+                        text: textValue,
+                        scale: 1,
+                        fill: new ol.style.Fill({ color: polygonColor['Text_Fill'] }),
+                        stroke: new ol.style.Stroke({ color: polygonColor['Text_Out'], width: 2 }),
+                        offsetX: 5,
+                        offsetY: 5
+                    })
+
+                });
+
+            }
+            else
+                return [defaultStyle];
+
+            return [styleCache[keyStyle]];
+        }
+
+        var search_Buffer = new ol.layer.Vector({
+            id: 'layerSearch',
+            title: 'Search',
+            source: setSourceLayerSource(),
+            style: styleFunction
+        });
+
+
+        function setSourceLayerSource() {
+            return new ol.source.Vector({
+                url: layerSearch,
+                format: new ol.format.GeoJSON()
+            });
+        }
+
+
+
+
+
+        function chooseLayer() {
+            layerList.push(search_Buffer);
+            return layerList;
+        }
+
+
+
+
+        var rainLegend = "<div id='infoAttribute' style='width:250px'><div id='textAttribute' style='font-family:Verdana, Geneva, sans-serif;font-size:10px;'><a href='http://openstreetmap.org/'>OpenStreetMap</a><br/>The boundaries and the names shown on this map do not imply official endorsement or acceptance by the European Union.</div>";
+        var rainLegend1 = "<div id='infoAttribute' style='width:250px'><img src='https://www.gdacs.org/images/rainfall_legend.png' width=96px; height=173px; /></div><br/><div id='textAttribute' style='font-family:Verdana, Geneva, sans-serif;font-size:10px;'><a href='http://openstreetmap.org/'>OpenStreetMap</a><br/>The boundaries and the names shown on this map do not imply official endorsement or acceptance by the European Union.</div>";
+
+        var scaleLineControl = new ol.control.ScaleLine();
+        scaleLineControl.setUnits('metric');
+        function buildMap() {
+            return new ol.Map({
+                controls: ol.control.defaults().extend([
+                    scaleLineControl
+                ]),
+                target: 'map',
+                overlays: [overlay],
+                layers: [
+                    new ol.layer.Group({
+                        id: 'Base',
+                        title: 'Base maps',
+                        layers: [
+                            new ol.layer.Tile({
+                                title: 'OSM JRC',
+                                id: 'osmec',
+                                type: 'base',
+                                visible: true,
+                                source: new ol.source.XYZ({
+                                    //projection: 'EPSG:900913',
+                                    //url: "//europa.eu/webtools/maps/tiles/osm-ec/{z}/{x}/{y}.png",
+                                    projection: 'EPSG:3857',
+                                    url: "https://gisco-services.ec.europa.eu/maps/tiles/OSMCartoComposite/EPSG3857/{z}/{x}/{y}.png",
+                                    attributions: [new ol.Attribution({ html: "<a href='http://openstreetmap.org/'>OpenStreetMap</a><br/>The boundaries and the names shown on this map do not imply official endorsement or acceptance by the European Union." })],
+                                    maxZoom: 18,
+                                })
+                            }),
+                            new ol.layer.Tile({
+                                title: 'JRC - Hypso',
+                                id: 'hypsoec',
+                                type: 'base',
+                                visible: false,
+                                source: new ol.source.XYZ({
+                                    url: "https://europa.eu/webtools/maps/tiles/hypso/{z}/{x}/{y}",
+                                    maxZoom: 18
+                                })
+                            }),
+                            new ol.layer.Tile({
+                                title: 'JRC - Natural',
+                                id: 'naturalec',
+                                type: 'base',
+                                visible: false,
+                                source: new ol.source.XYZ({
+                                    url: "https://europa.eu/webtools/maps/tiles/natural/{z}/{x}/{y}",
+                                    maxZoom: 18
+                                })
+                            }),
+                            new ol.layer.Tile({
+                                title: 'JRC - Bmarble',
+                                id: 'bmarbleec',
+                                type: 'base',
+                                visible: false,
+                                source: new ol.source.XYZ({
+                                    url: "https://europa.eu/webtools/maps/tiles/bmarble/{z}/{x}/{y}",
+                                    maxZoom: 18
+                                })
+                            })]
+                    }),
+                    new ol.layer.Group({
+                        id: 'Layers',
+                        title: 'Layers',
+                        layers: chooseLayer()
+                    })
+                ],
+                view: new ol.View({
+                    center: [0, 0],
+                    zoom: 2,
+                    projection: 'EPSG:4326',
+                    minZoom: 1,
+                    maxZoom: 11
+                })
+            });
+        }
+
+        function onMoveEnd(evt) {
+            var map = evt.map;
+            zoomLevel = map.getView().getZoom();
+        }
+        function onSingleClick(evt) {
+            var coordinate = evt.coordinate;
+            var pixel = evt.pixel;
+            var _found = false;
+            evt.map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+                // check the layer property, if it is not set then it means we
+                // are over an OverlayFeature and we can ignore this feature
+                if (!layer || _found) {
+                    return;
+                }
+                // test the feature's geometry type and compute a reasonable point
+                // at which to display the text.
+                var geometry = feature.getGeometry();
+                var point;
+                switch (geometry.getType()) {
+                    case 'MultiPolygon':
+                        var poly = geometry.getPolygons().reduce(function (left, right) {
+                            return left.getArea() > right.getArea() ? left : right;
+                        });
+                        point = poly.getInteriorPoint().getCoordinates();
+                        break;
+                    case 'Polygon':
+                        point = geometry.getInteriorPoint().getCoordinates();
+                        break;
+                    default:
+                        point = geometry.getClosestPoint(coordinate);
+                }
+                // create a new feature to display the text
+                /*textFeature = new ol.Feature({
+                geometry: new ol.geom.Point(point),
+                text: feature.get('name'),
+                isoCode: feature.get('iso_a2').toLowerCase()
+                });*/
+                // and add it to the featureOverlay.  Also add the feature itself
+                // so the country gets outlined
+
+
+                var reportLink = feature.get('link');
+                var magnitudeReference = '';
+                if (reportLink == null)
+                    reportLink = feature.get('url').report;
+                if (feature.get('eventtype') == 'EQ')
+                    magnitudeReference = ' M ' + feature.get('severitydata').severity + ' ';
+                if (reportLink != null && reportLink != '') {
+                    //content.innerHTML = '<code class="map_item_popup"><div class="map_item_popup_content">' + feature.get('htmldescription') + '<br/>see full report <a href="' + feature.get('link') + '" target="_blank">here</a></div></code>';
+                    content.innerHTML = '<div>' +
+                        '<p class="p_map_baloon_text_bold">' + feature.get('alertlevel') + magnitudeReference + ' ' + feature.get('description') + ' </p>' +
+                        '<p class="p_map_baloon_text">' + feature.get('todate') + '</p>' +
+                        '<p class="p_map_baloon_text">Full report <a href="' + reportLink + '">here</a></p>' +
+                        '</div>';
+                }
+                else {
+                    content.innerHTML = '<div>' +
+                        '<p class="p_map_baloon_text_bold">' + feature.get('alertlevel') + magnitudeReference + ' ' + feature.get('description') + ' </p>' +
+                        '<p class="p_map_baloon_text">' + feature.get('todate') + '</p>' +
+                        '</div>';
+                }
+
+
+                overlay.setPosition(coordinate);
+                _found = true;
+            });
+        }
+
+
+
+        function buildLayerSwitcher() {
+            return new ol.control.LayerSwitcher({
+                tipLabel: 'Layers' // Optional label for button
+            });
+        }
+
+        function buildLayerLegend() {
+            return new ol.control.LayerLegend({
+                tipLabel: 'Legend' // Optional label for button
+            },
+                'https://www.gdacs.org/images/rainfall_legend.png');
+        }
+
+        var layerSwitcher = buildLayerSwitcher()
+        var layerLegend = buildLayerLegend()
+
+
+        var map = buildMap();
+
+        function addMapController() {
+            // map.addControl(layerSwitcher);
+            //map.addControl(layerLegend);
+            map.on('singleclick', onSingleClick);
+            map.on('moveend', onMoveEnd);
+            return true;
+        }
+
+        addMapController();
+
+
+        var changeLayer = function () {
+
+            //map = buildMap();
+            //addMapController();
+
+            var all_layer_groups = map.getLayers();
+            var layer_group;
+            var layer_item;
+            var all_layer_gdacs;
+            for (i = 0, n = all_layer_groups.getLength(); i < n; i++) {
+                layer_group = all_layer_groups.item(i);
+                if (layer_group.get('id') == 'Layers') {
+                    all_layer_gdacs = layer_group.getLayers();
+                    for (j = 0, k = all_layer_gdacs.getLength(); j < k; j++) {
+                        layer_item = all_layer_gdacs.item(j);
+                        if (layer_item.get('id') == 'layerSearch') {
+                            layer_item.setSource(setSourceLayerSource());
+                        }
+                    }
+                }//if
+            }//for
+            map.updateSize();
+            map.render();
+            //updateInfo();
+        };
+
+        var play = function () {
+            stop();
+            animationId = window.setInterval(changeLayer, 1000 / frameRate);
+        };
+
+        var stop = function () {
+            if (animationId !== null) {
+                window.clearInterval(animationId);
+                animationId = null;
+            }
+        };
+        $(window).resize(function () {
+            var view = map.getView();
+            if (window.innerWidth < 768) {
+                view.setZoom(1);
+            } else {
+                view.setZoom(2);
+            }
+
+
+        });
+
+
+
+    </script>
+
+
+                </div>
+                
+
+                <div id="footer_home">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-footer col-12">
+                        <button class="navbar-toggler" style="font-size: 18px; color: white; font-weight: bold" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon" style="color: white;"></span>
+                            MENU
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkupFooter">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link" href="../default.aspx">HOME</a>
+                                <a class="nav-item nav-link active" href="../Alerts/default.aspx">GDACS EVENTS</a>
+                                <a class="nav-item nav-link" href="http://vosocc.unocha.org">VIRTUAL OSOCC</a>
+                                <a class="nav-item nav-link" href="https://smcs.unosat.org/home" target="_blank">MAPS & SATELLITE IMAGERY</a>
+                                <a class="nav-item nav-link" href="../Knowledge/overview.aspx">KNOWLEDGE</a>
+                                <a class="nav-item nav-link" href="../About/overview.aspx">ABOUT</a>
+                            </div>
+                        </div>
+                    </nav>
+                    <div id="footer_disclaimer" class="col-12">
+                        <!--<div class="float-left gdacs_bottom_menu_content" ><a href="https://ec.europa.eu/info/brexit-content-disclaimer" target="_blank">Brexit content disclaimer</a></div>-->
+                        <div class="float-end gdacs_bottom_menu_content"><a href="../About/cookies.aspx" target="_blank">cookies</a></div>
+                        <p>
+                            <b><span class="gdacs_bottom_menu_content"><a href="https://ec.europa.eu/info/legal-notice_en" target="_blank">Disclaimer</a></span></b><br />
+                            While we try everything to ensure accuracy, this information is purely indicative and should not be used for any decision making without alternate sources of information. 
+                    <br />
+                            The JRC is not responsible for any damage or loss resulting from the use of the information presented on this website.
+                    <br />
+                            The designations employed and the presentation of material on the map do not imply the expression of any opinion whatsoever on the part of the European Union concerning the legal status of any country, territory or area or of its authorities, or concerning the delimitation of its frontiers or boundaries.
+                        </p>
+                    </div>
+                    <div id="footer_logo" class="d-none d-lg-block">
+                        <div class="footerlogo_item d-none d-lg-block">
+                            <img src="../images/gdacs_icons/partners/ec.png" width="90" height="70" alt="" /></div>
+                        <div class="footerlogo_item d-none d-lg-block">
+                            <img src="../images/gdacs_icons/partners/ocha.png" width="90" height="70" alt="" /></div>
+                        <div class="footerlogo_item d-none d-lg-block">
+                            <img src="../images/gdacs_icons/partners/unitar.png" width="90" height="70" alt="" /></div>
+                        <div class="footerlogo_item d-none d-lg-block">
+                            <img src="../images/gdacs_icons/partners/unosat.png" width="90" height="70" alt="" /></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+            $(function () {
+                if (window.innerWidth < 991) {
+                    $("#nopadding").addClass('container-fluid').removeClass('container');
+
+                }
+            });
+
+            $(window).resize(function () {
+                if (window.innerWidth < 991) {
+                    $("#nopadding").addClass('container-fluid').removeClass('container');
+                }
+                else {
+                    $("#nopadding").addClass('container').removeClass('container-fluid');
+                }
+            });
+
+        //$(function () {
+        //        $('.table').stacktable();
+        //    });
+
+        </script>
+<script type="text/javascript">
+    const observer = new MutationObserver((mutations) => {
+        if (document.contains(document.querySelector("div.analytics.wt.wt-analytics"))) {
+            observer.disconnect()
+            setTimeout(() => {
+                if ($wt.analytics.isTrackable()) {
+                    $wt.trackPageView()
+                }
+            }, 200)
+        }
+    })
+    observer.observe(document, { attributes: false, childList: true, characterData: false, subtree: true })
+</script>
+    </body>
+</html>

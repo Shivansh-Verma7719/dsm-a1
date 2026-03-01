@@ -1,0 +1,6 @@
+url,country,alert_level,magnitude,population_exposed,vulnerability_score,secondary_risks,articles_count,social_media_mentions,inserted_at
+https://www.gdacs.org/report.aspx?eventid=1500178&episodeid=1660338&eventtype=EQ,India,Orange,5.5M,370 thousand (in MMI>=VII),4.6 (India),,50,0,14 Sep 2025 12:09 UTC
+https://www.gdacs.org/report.aspx?eventid=1104946&episodeid=1156500&eventtype=EQ,India,Orange,5.6M,1640000 people within 100km,India= 4.6; China= 3.6,,126,0,06 Feb 2017 17:33 UTC
+https://www.gdacs.org/report.aspx?eventid=1504268&episodeid=1665061&eventtype=EQ,Philippines,Orange,7.4M,610 thousand (in MMI>=VII),4.2 (Philippines),Tsunami risk detected,1655,0,10 Oct 2025 01:56 UTC
+https://www.gdacs.org/report.aspx?eventid=1111531&episodeid=1165893&eventtype=EQ,Philippines,Red,6.9M,"100000 people in MMI
+1800000 people within 100km",4.2 (Philippines),Tsunami risk detected,12,0,29 Apr 2017 18:39 UTC
