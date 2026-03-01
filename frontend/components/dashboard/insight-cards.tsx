@@ -49,7 +49,7 @@ export function InsightCards({ selectedEventUrl, temporal, ner, sentiment, crisi
                 eventData.ngos_mentioned?.forEach((n: string) => ngos.add(n));
             });
         }
-        return Array.from(ngos).slice(0, 3);
+        return Array.from(ngos);
     };
 
     const currentCrisis = (selectedEventUrl && selectedEventUrl !== "all") ? crisis?.find(c => c.event_url === selectedEventUrl || c.event_url?.includes(selectedEventUrl)) : crisis?.[0];

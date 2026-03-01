@@ -1,0 +1,131 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{setspace}
+
+\title{\textbf{DSM A1 Final Report: GDACS Disaster Analysis}}
+\author{Shivansh Verma}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Natural disasters such as earthquakes cause immense human suffering and economic loss. To effectively manage crisis response, it is critical to understand not only the geographical and physical impact of the disaster but also how the global media, governments, and NGOs react to it. This project aims to analyze data from the Global Disaster Alert and Coordination System (GDACS) to investigate media responsiveness, sentiment volatility, and the "Forgotten Crisis" phenomenon across structural datasets. The live application of this project is deployed and accessible at \url{https://dsm-a1.vercel.app/}.
+
+\section{Methods and Approaches}
+This assignment was divided into three main components: data scraping, backend analysis, and frontend visualization. 
+
+\subsection{Data Collection}
+I deployed a web scraper using Playwright to navigate the GDACS alerts platform. The scraping targeted earthquake events across two countries: India and the Philippines from 2016 to 2026. The goal was to select historical and recent events to analyze response times and media coverage over time. The extracted data primarily encompassed:
+\begin{itemize}
+    \item \textbf{Summary}: Alert Level, Magnitude, Time.
+    \item \textbf{Impact}: Exposed Population, Vulnerability Score (INFORM), Secondary Risks.
+    \item \textbf{Media}: Timeline of articles, social media mentions, and news headlines.
+\end{itemize}
+Scraping modern interactive websites presents numerous challenges, specifically identifying accurate CSS selectors and waiting for dynamically loaded elements (\textit{e.g.}, Graphs in the Impact Tab) which drastically impact data fidelity.
+
+\subsection{Backend API and Processing}
+A robust FastAPI backend was built to serve the scraped data and process deep analytics. Key natural language processing (NLP) pipelines utilized \texttt{spaCy} for Named Entity Recognition (NER) to isolate NGOs, Governments, and metrics (casualties/funding). The \texttt{TextBlob} library was applied to gauge the sentiment volatility (Alarmist vs. Neutral/Recovery) across the aggregated news articles.
+
+\subsection{Frontend Dashboard}
+A responsive web dashboard was developed using modern React (Next.js) with dynamic charting components. The project uses the \texttt{tabler} or \texttt{lucide-react} icons prioritizing aesthetic design as per strict guidelines, using a distinct non-generic font family to present the findings cleanly.
+
+\section{System Architecture}
+The system relies on a modern, containerized stack to guarantee consistency across environments and seamless deployment. The main services are combined using Docker Compose.
+
+\subsection{Docker and Containerization}
+The application is fully containerized using Docker, with a \texttt{docker-compose.yml} file orchestrating the multi-container environment. By isolating the frontend and backend into their respective containers, I achieve parity between development and production setups, simplified dependency management, and streamlined localized testing.
+
+\subsection{Backend Framework - FastAPI}
+The backend is built with FastAPI, a modern, high-performance web framework for Python. FastAPI was chosen for its native asynchronous capabilities and automatic OpenAPI documentation generation. It handles data ingestion from the scraped CSV files and serves the processed analytic data to the frontend rapidly.
+
+\subsection{Frontend and UI Libraries - Next.js}
+The frontend dashboard is developed using Next.js (React), taking advantage of its robust routing and server-side rendering parameters. To make it more aesthetic, the UI avoids generic components. Complex logical processing was delegated to backend endpoints, keeping the React components purely focused on declarative rendering and dynamic data visualization.
+
+\section{Data Analysis and Results}
+
+\subsection{Temporal Response Analysis}
+The delay between the GDACS system alert and the peak media coverage was measured. In recent events, media sometimes predicts or reacts instantaneously (Day 0 or -1), whereas historical events often showed a lag.
+
+\begin{table}[H]
+\centering
+\caption{Temporal Response (System Alert vs. Media Peak)}
+\begin{tabular}{l l l r}
+\toprule
+\textbf{Country} & \textbf{Period} & \textbf{Alert Date} & \textbf{Delta To Peak (Days)}\\
+\midrule
+India & Recent & 2025-09-14 & -1 \\
+India & Historical & 2017-02-06 & 3 \\
+Philippines & Recent & 2025-10-10 & -1 \\
+Philippines & Historical & 2017-04-29 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Named Entity Recognition (NER)}
+Using \texttt{spaCy}, I extracted entities matching NGOs (e.g., UN, Red Cross) and Government bodies (e.g., Department of Education, Police).
+The recent Philippines earthquake (2025) yielded massive mentions for both NGOs (UN, Pacific Tsunami Warning Center, Oxfam) and vast arrays of governmental agencies, contrasting heavily with the 2017 event, showing how multi-agency responses have scaled in immediate media reporting in recent years.
+
+\subsection{Sentiment Volatility}
+Sentiments analyzed from the headlines predominantly lean toward \textit{Analytical/Neutral} across both periods and geographies. Although the sentiment score averages are close to zero (e.g., Philippines Recent at 0.015), the subjectivity remains consistent (around 0.17 - 0.22), reflecting an objective and detached reporting style by the global media when describing casualties or facts.
+
+\subsection{Forgotten Crisis and Vulnerability}
+A "Forgotten Crisis" index was formulated based on media coverage relative to the exposed population. If the index exceeds 50, it is deemed 'Over-covered'; else, 'Under-reported'. 
+
+\begin{table}[H]
+\centering
+\caption{Forgotten Crisis and Vulnerability Index}
+\begin{tabular}{l l r r l}
+\toprule
+\textbf{Country - Period} & \textbf{Mag} & \textbf{Exposed Pop.} & \textbf{Index Score} & \textbf{Status}\\
+\midrule
+India - Recent & 5.5 & 370,000 & 13.51 & Under-reported \\
+India - Historical & 5.6 & 1,640,000 & 7.68 & Under-reported \\
+Philippines - Recent & 7.4 & 610,000 & 271.31 & Over-covered \\
+Philippines - Historical & 6.9 & 100,000 & 12.00 & Under-reported \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The findings denote that countries experiencing lower-magnitude, localized earthquakes (India, mostly 5.5 magnitudes) frequently fall under the radar, irrespective of the vulnerable populations (1.6M in 2017).
+
+\section{Discussion and Challenges}
+
+\subsection{General Project Failures and Adjustments}
+During the assignment process, one significant failure was handling server timeout and runtime errors on the GDACS platform while scraping. The scraper continually faced \textit{TimeoutExceptions} when attempting to execute automated navigation. To overcome this, a resilient \texttt{safe\_goto} wrapper function was written which aggressively checked for page "Runtime Error" strings and triggered reloads.
+
+\subsection{Final Report: Scraping Impacts \& Disaster Evolution}
+
+\textbf{Technical Challenges of Scraping "Impact" Tables} \\
+The core objective of scraping the "Impact" tables presented major technical hurdles owing to the structure of the GDACS platform. Unlike static content pages, the Impact tab loads data asynchronously and generates its visualizations via JavaScript post-load. Navigating to the Impact tab initially required locating the exact href tab link and switching contexts. 
+The paramount challenge surfaced when attempting to scrape the \textit{INFORM Vulnerability Score} and \textit{Exposed Population} metrics. The unstructured \texttt{table.summary} required iterating through rows and conditionally checking cell contents via \texttt{inner\_text()} keyword matching (e.g., "Exposed Population", "INFORM"). This heuristic approach is inherently brittle. A minor UI update from GDACS would immediately invalidate the scraper. Furthermore, identifying 'Secondary Risks' such as Tsunamis required parsing plain text matrices inside \texttt{\#tableScoreMain}. The platform lacked distinct structural wrappers (like data-attributes or semantic tags) for these individual data points, enforcing reliance on broad string-matching heuristics. Occasional element rendering delays frequently resulted in 0 metrics being recorded. Playwright's \texttt{wait\_for\_selector()} functions were deployed on anchors like \texttt{\#contentGraph} to guarantee page generation before data extraction.
+
+\textbf{Summarizing the "Evolution" of the Disaster} \\
+An examination of my temporal and vulnerability data reveals a fascinating narrative regarding the "Evolution" of disaster coverage. When querying whether the world is responding faster today, the empirical evidence points toward a resounding 'Yes', although this comes with a caveat. My Temporal Response Analysis highlights that for historical events (e.g., India 2017 and Philippines 2017), the media peak occurred roughly 2 to 3 days after the initial system alert. In sharp contrast, recent events (2025) demonstrate negative or immediate deltas, wherein media peak coverage aligns natively with the system alert date or precipitates the formal impact quantification. This signifies a modern era of hyper-connectedness where localized digital reporting precedes traditional news channels.
+
+However, the question remains: is the media focus aligning with the areas of highest vulnerability? The 'Forgotten Crisis' index results reveal a stark systemic inequality in global coverage. Despite India presenting significant exposed populations (1.64 million exposed in 2017) coupled with an INFORM vulnerability score of 4.6 (exceeding the Philippines’ 4.2), both the recent and historical Indian earthquakes were classified as “Under-reported”. Media focus overwhelmingly gravitated toward the high-magnitude (7.4) and secondary-risk (Tsunami) event in the Philippines in 2025, which amassed an index score of 271 ('Over-covered') despite impacting a comparatively smaller demographic of 610,000 individuals. 
+
+This establishes that media focus does not align with vulnerability. Instead, it is inextricably tethered to the 'spectacle' of the disaster—higher magnitude numbers and imminent secondary threats like tsunamis generate significantly more traction than the grinding reality of socioeconomic vulnerability. The global response mechanism is mathematically faster today, propelled by advanced sensor networks and social media propagation, yet it remains profoundly biased. Highly vulnerable populations enduring moderate earthquakes continue to suffer silently in the shadow of 'mega-disasters' that monopolize international attention and, subsequently, global funding.
+
+\section{Conclusion}
+This assignment successfully demonstrated the end-to-end pipeline of data ingestion, NLP analysis, and frontend visualization for tracking disaster events. The project illuminated the profound disparity between geographical vulnerability and media attention, validating the hypothesis that lower-magnitude events often evolve into "Forgotten Crises". While the world responds significantly faster to disasters today compared to a decade ago, media focus remains disproportionate, aligning heavily with extreme magnitudes and secondary threats rather than the sheer volume of exposed, vulnerable populations.
+
+\section{Supplementary Items}
+\begin{itemize}
+    \item \textbf{Live Dashboard:} \url{https://dsm-a1.vercel.app/}
+    \item \textbf{Backend Code:} \texttt{/backend} directory
+    \item \textbf{Frontend Code:} \texttt{/frontend} directory
+    \item \textbf{Scraping Scripts:} \texttt{/scraper} directory
+\end{itemize}
+
+\end{document}
