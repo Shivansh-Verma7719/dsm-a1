@@ -47,7 +47,18 @@ The system relies on a modern, containerized stack to guarantee consistency acro
 The application is fully containerized using Docker, with a \texttt{docker-compose.yml} file orchestrating the multi-container environment. By isolating the frontend and backend into their respective containers, I achieve parity between development and production setups, simplified dependency management, and streamlined localized testing.
 
 \subsection{Backend Framework - FastAPI}
-The backend is built with FastAPI, a modern, high-performance web framework for Python. FastAPI was chosen for its native asynchronous capabilities and automatic OpenAPI documentation generation. It handles data ingestion from the scraped CSV files and serves the processed analytic data to the frontend rapidly.
+The backend is built with FastAPI. FastAPI was chosen for its native asynchronous capabilities and automatic OpenAPI documentation generation. It handles data ingestion from the scraped CSV files and serves the processed analytic data to the frontend rapidly. 
+
+The architecture exposes several specialized endpoints to power the frontend visualizations:
+\begin{itemize}
+    \item \texttt{GET /api/events}: Returns the foundational event data containing sanitized metrics (\textit{e.g.}, magnitude, population exposed).
+    \item \texttt{GET /api/timeline}: Provides the chronological data (articles per day) necessary for rendering the media Evolution Timeline chart.
+    \item \texttt{GET /api/analysis/temporal}: Calculates and returns the response delta between the GDACS system alert and media peak dates.
+    \item \texttt{GET /api/analysis/ner}: Executes the \texttt{spaCy} NLP pipeline to extract and return named entities (NGOs, Governmental bodies) and metrics (deaths, funds) from news headlines.
+    \item \texttt{GET /api/analysis/sentiment}: Runs \texttt{TextBlob} analysis over event headlines, returning the average polarity, subjectivity, and an overall evaluated tone (e.g., Alarmist, Analytical).
+    \item \texttt{GET /api/analysis/forgotten-crisis}: Computes the index measuring news volume directly against human vulnerability, labeling the event as 'Under-reported' or 'Over-covered'.
+    \item \texttt{GET /api/analysis/vulnerability}: Yields the raw structural vulnerability metrics (INFORM scores) for comparative benchmark analysis.
+\end{itemize}
 
 \subsection{Frontend and UI Libraries - Next.js}
 The frontend dashboard is developed using Next.js (React), taking advantage of its robust routing and server-side rendering parameters. To make it more aesthetic, the UI avoids generic components. Complex logical processing was delegated to backend endpoints, keeping the React components purely focused on declarative rendering and dynamic data visualization.
