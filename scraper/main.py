@@ -28,7 +28,7 @@ class GDACSScraper:
             self.playwright.stop()
 
     def _safe_goto(self, url, timeout=TIME_OUT):
-        """Navigate and handle server runtime errors by reloading."""
+        # Navigate and handle server runtime errors by reloading.
         self.page.goto(url, timeout=timeout)
         while True:
             try:
@@ -43,9 +43,8 @@ class GDACSScraper:
                 break
 
     def search_events(self, country, date_from, date_to, level="Orange"):
-        """
-        Navigate to GDACS alerts page and perform search.
-        """
+        # Navigate to GDACS alerts page and perform search.
+        
         print(f"Searching for {level} Earthquakes in {country} from {date_from} to {date_to}...")
         self._safe_goto("https://www.gdacs.org/Alerts/default.aspx", timeout=TIME_OUT)
         
@@ -85,10 +84,9 @@ class GDACSScraper:
 
 
     def extract_event_links(self):
-        """
-        Parse search results to find event links.
-        Returns a list of dicts with basic event info and URL.
-        """
+        # Parse search results to find event links.
+        # Returns a list of dicts with basic event info and URL.
+        
         events = []
         rows = self.page.query_selector_all("#contentResult tr.clickable-row")
         
@@ -114,9 +112,8 @@ class GDACSScraper:
         return events
 
     def scrape_event_details(self, event_url):
-        """
-        Scrape details from Summary, Impact, and Media tabs.
-        """
+        # Scrape details from Summary, Impact, and Media tabs.
+        
         full_url = event_url if event_url.startswith("http") else f"https://www.gdacs.org{event_url}"
         print(f"Scraping event: {full_url}")
         
@@ -307,7 +304,7 @@ class GDACSScraper:
         return data
 
     def save_data(self, all_data):
-        """Save extracted data to CSVs."""
+        # Save extracted data to CSVs.
         if not all_data:
             print("No data to save.")
             return

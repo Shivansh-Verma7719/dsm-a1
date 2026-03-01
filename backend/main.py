@@ -32,7 +32,7 @@ def read_root():
 
 @app.get("/api/events")
 def get_events():
-    """Returns the base events with cleaned metrics."""
+    # Returns the base events with cleaned metrics.
     # Convert dates to string for JSON serialization
     safe_df = events_df.copy()
     safe_df['inserted_at_dt'] = safe_df['inserted_at_dt'].astype(str)
@@ -47,7 +47,7 @@ def get_events():
 
 @app.get("/api/timeline")
 def get_timeline():
-    """Returns the timeline data for rendering the Evolution Timeline chart"""
+    # Returns the timeline data for rendering the Evolution Timeline chart
     safe_df = timeline_df.copy()
     safe_df['date_dt'] = safe_df['date_dt'].astype(str)
     

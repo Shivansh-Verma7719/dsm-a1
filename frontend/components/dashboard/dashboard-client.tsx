@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Select, Label, ListBox } from "@heroui/react";
 import { InsightCards } from "@/components/dashboard/insight-cards";
-import { ChartPlaceholders } from "@/components/dashboard/chart-placeholders";
+import { ChartPlaceholders } from "@/components/dashboard/charts";
 import { EventKPI } from "@/components/dashboard/event-kpi";
 
 interface DashboardClientProps {

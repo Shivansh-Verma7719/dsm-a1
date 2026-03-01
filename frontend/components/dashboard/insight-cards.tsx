@@ -20,7 +20,7 @@ interface InsightCardsProps {
     events: any[];
 }
 
-export function InsightCards({ selectedEventUrl, temporal, ner, sentiment, crisis, vulnerability, events }: InsightCardsProps) {
+export function InsightCards({ selectedEventUrl, temporal, ner, sentiment, crisis }: InsightCardsProps) {
 
     // Helpers to get summary data
     const getAverageDelta = () => {

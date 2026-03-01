@@ -2,12 +2,11 @@ import datetime
 import re
 
 def parse_date(date_str):
-    """
-    Parses a date string into a datetime object.
-    Common formats in GDACS: 
-    - "10 Oct 2025 01:43 UTC"
-    - "26 Oct 2015"
-    """
+    # Parses a date string into a datetime object.
+    # Common formats in GDACS: 
+    # - "10 Oct 2025 01:43 UTC"
+    # - "26 Oct 2015"
+    
     if not date_str:
         return None
     
@@ -37,18 +36,16 @@ def parse_date(date_str):
     return None
 
 def clean_text(text):
-    """
-    Cleans extracted text by removing extra whitespace and newlines.
-    """
+    # Cleans extracted text by removing extra whitespace and newlines.
+    
     if not text:
         return ""
     return re.sub(r'\s+', ' ', text).strip()
 
 def extract_number(text):
-    """
-    Extracts the first number from a string, removing commas.
-    Useful for population or article counts.
-    """
+    # Extracts the first number from a string, removing commas.
+    # Useful for population or article counts.
+    
     if not text:
         return 0
     matches = re.findall(r'[\d,]+', text)
